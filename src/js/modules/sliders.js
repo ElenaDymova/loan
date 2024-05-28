@@ -19,6 +19,21 @@ export default class Slider {
             this.slideIndex = this.slides.length; //показываем последний слайд
         }
 
+        //показ окошка на 3 странице
+        try {
+            this.hanson.style.opacity = '0';
+
+            if (n === 3) {
+                this.hanson.classList.add('animated');
+                setTimeout(() => {
+                    this.hanson.style.opacity = '1';
+                    this.hanson.classList.add('slideInUp');
+                }, 3000);
+            } else {
+                this.hanson.classList.remove('slideInUp');
+            }
+        } catch(e) {}
+
         //скрываем все элементы слайда
         [...this.slides].forEach(slide => {
             slide.style.display = 'none';
@@ -34,6 +49,10 @@ export default class Slider {
 
     //главный метод выполняющий самые главные действия на странице
     render() { 
+        try {
+            this.hanson = document.querySelector('.hanson'); //окошко на 3 странице
+        } catch(e){}
+
         this.btns.forEach(item => { //перебираем кнопки
             item.addEventListener('click', () => {
                 this.plusSlides(1);
