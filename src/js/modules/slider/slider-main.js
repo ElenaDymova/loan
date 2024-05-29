@@ -1,15 +1,11 @@
-export default class Slider {
-    //сво-ва характеризующие слайдер на начальном этапе
-    //те вещи которые описывают слайдер еще до начала работы
-    constructor(page, btns) { //страница на кот размещается слайдер и кнопки переключения
-        //конструем св-ва нового объекта
-        this.page = document.querySelector(page);
-        this.slides = this.page.children; //блоки внутри page
-        this.btns = document.querySelectorAll(btns);
-        this.slideIndex = 1; //определяет текущий слайд
+import Slider from './sliders';
+
+export default class MainSlider extends Slider { //MainSlider наследуется от Slider
+    constructor(btns) { //в главном слайдере используем только 1 св-во из главного слайдера
+        //метод super чтобы получить доступ к ним
+        super(btns);
     }
 
-    //
     showSlides(n) { //n - отвечает за то куда двигается слайдер
         if (n > this.slides.length) { //если слайд долистали до последнего, то 
             this.slideIndex = 1; //показываем 1 слайд
